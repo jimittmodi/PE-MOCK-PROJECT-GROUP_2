@@ -1,0 +1,194 @@
+{% extends "base.html" %} {% block content %}
+
+<!--Hero Section-->
+
+<section class="hero-section">
+  <div class="hero-section_wrapper">
+    <h1 class="hero-section_title">Find Your New Coach Today!</h1>
+
+    <div class="hero-search" id="main-search">
+      <form id="search-form" method="POST" action="{{url_for('search')}}">
+        <label for="search_box"></label>
+        <input
+          type="search"
+          class="search-box"
+          placeholder="Search all Coaches..."
+          id="search_box"
+          name="search_box"
+        />
+        <input type="submit" value="EXPLORE" class="search-submit" />
+      </form>
+    </div>
+
+    <div class="hero-search" id="mobile-search">
+      <!--Search Form Mobile-->
+      <form
+        id="search-form-mobile"
+        method="POST"
+        action="{{url_for('search_mobile')}}"
+      >
+        <label for="search_box-mobile"></label>
+        <input
+          type="search"
+          class="search-box"
+          placeholder="Search all Coaches..."
+          id="search_box-mobile"
+          name="search_box"
+        />
+        <input type="submit" value="EXPLORE" class="search-submit" />
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="hiring-strip">
+  <h2>Post yourself as a Coach in front of thousands talented players</h2>
+  <a class="btn" href="{{url_for('post_job')}}">POST A Free Coaching Session</a>
+</div>
+
+<!--Search By Category Section-->
+
+<section class="popular-categories">
+  <h1 class="section-title">Popular Categories</h1>
+  <hr class="large-horizontal-rule" />
+  <div class="popular-categories-box_wrapper">
+    <div class="popular-jobs_box-search category_one">
+      <i class="fas fa-chart-pie fa-3x"></i>
+      <h1>Football</h1>
+      <form action="{{url_for('find_job')}}" method="POST">
+        <label for="marketing"></label>
+        <input
+          id="marketing"
+          class="search-btn-category"
+          name="job_category_name"
+          type="submit"
+          value="marketing"
+        />
+        <i class="fas fa-angle-double-right fa-3x"></i>
+      </form>
+    </div>
+
+    <div class="popular-jobs_box-search category_two">
+      <i class="fas fa-coins fa-3x"></i>
+      <h1>Badminton</h1>
+      <form action="{{url_for('find_job')}}" method="POST">
+        <input
+          class="search-btn-category"
+          name="job_category_name"
+          type="submit"
+          value="finance"
+        />
+        <i class="fas fa-angle-double-right fa-3x"></i>
+      </form>
+    </div>
+
+    <div class="popular-jobs_box-search category_three">
+      <i class="fas fa-phone-volume fa-3x"></i>
+      <h1>Cricket</h1>
+      <form action="{{url_for('find_job')}}" method="POST">
+        <input
+          class="search-btn-category"
+          name="job_category_name"
+          type="submit"
+          value="sales"
+        />
+        <i class="fas fa-angle-double-right fa-3x"></i>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!--About Section-->
+
+<section class="about-container">
+  <div class="about-background_overlay"></div>
+  <video autoplay muted loop id="about-video">
+    <source src="static/images/about-video.mp4" type="video/mp4" />
+  </video>
+
+  <div class="about-content">
+    <h1>About Coaching</h1>
+    <p>
+      There is a huge difference between teaching someone and helping them to learn. In coaching, fundamentally, the coach is helping the individual to improve their own performance: in other words, helping them to learn.
+      Good coaches believe that the individual always has the answer to their own problems but understands that they may need help to find the answer.
+    </p>
+
+    <div class="about-content_usp">
+      <div class="usp-box">
+        <i class="fas fa-handshake fa-4x"></i>
+        <span class="counter" data-count="4000">4000</span>
+        <h2>Coaches and Trainers</h2>
+      </div>
+
+      <div class="usp-box">
+        <i class="fas fa-bullhorn fa-4x"></i>
+        <span class="counter" data-count="100">10</span>
+        <h2>Years In Business</h2>
+      </div>
+
+      <div class="usp-box">
+        <i class="fas fa-users fa-4x"></i>
+        <span class="counter" data-count="4000">30</span>
+        <h2>Staff Members</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--FAQ's Section-->
+
+<section id="faq-section">
+  <h2 class="section-title">FAQ'S</h2>
+  <hr class="large-horizontal-rule" />
+  <br />
+
+  <div class="quesitons-wrapper">
+    <div class="question-dropdown">
+      <h3>Where can I find information about coaches in various files?</h3>
+      <i class="fas fa-caret-right"></i>
+      <p>
+        You will find a complete information on coaches on the find-coaches page which can be
+        located in the top navigation bar & footer
+      </p>
+    </div>
+
+    <div class="question-dropdown">
+      <h3>What are the benefits of registering as a Coach?</h3>
+      <i class="fas fa-caret-right"></i>
+      <p>
+        You get a pool of thousands of players ready to perform and dedicated to wrok hard.
+      </p>
+    </div>
+
+    <div class="question-dropdown">
+      <h3>Where can I get help with registering or using the site?</h3>
+      <i class="fas fa-caret-right"></i>
+      <p>
+        You can contact us directly at
+        <a href="mailto:support:jobbing.com">support@coaching.com</a>, or you can
+        submit the form with your question on the contact us page.
+      </p>
+    </div>
+
+    <div class="question-dropdown">
+      <h3>How can I save Coaches I like?</h3>
+      <i class="fas fa-caret-right"></i>
+      <p>
+        After viewing the coaches on find a coach page, you can click on hearth icon
+        in the right corner and that will save the coaches you like on your profile
+      </p>
+    </div>
+
+    <div class="question-dropdown">
+      <h3>Where can I edit my personal information?</h3>
+      <i class="fas fa-caret-right"></i>
+      <p>
+        You can edit you information on My Profile page. All the personal
+        details should be listed at the top of the page. From there you can
+        change all the relevant information.
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

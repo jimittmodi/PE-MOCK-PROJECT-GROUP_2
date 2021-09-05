@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block content %}
+
+<!--Edit a job-->
+<section class="post-job-form">
+  <h1>Edit Coach Details</h1>
+  <h4>Please make the changes below</h4>
+  <form
+    class="edit-job-form"
+    method="POST"
+    action="{{url_for('edit_job', post=job._id)}}"
+  >
+    <label for="job_title">Coach Name</label>
+    <input
+      type="text"
+      id="job_title"
+      name="job_title"
+      class="validate"
+      minlength="10"
+      maxlength="75"
+      value="{{job.job_title}}"
+      required
+    />
+    <label for="job_category">Sports Category:</label>
+    <select
+      name="job_category"
+      id="job_category"
+      class="validate"
+      required
+      disabled
+    >
+      <option value="{{job.job_category}}" class="selected">
+        {{- job.job_category -}}
+      </option>
+    </select>
+    <label for="contract_type">Experience</label>
+    <select
+      name="contract_type"
+      id="contract_type"
+      class="validate"
+      required
+      disabled
+    >
+      <option value="{{job.contract_type}}" class="selected">
+        {{- job.contract_type -}}
+      </option>
+    </select>
+    <label for="job_description">Coach Details:</label>
+    <textarea
+      spellcheck="false"
+      id="job_description"
+      name="job_description"
+      rows="100"
+      minlength="150"
+      maxlength="15000"
+      class="validate"
+      required
+    >
+{{- job.job_description -}}</textarea
+    >
+    <label for="salary_range">Approximate Fees:</label>
+    <input
+      type="text"
+      id="salary_range"
+      name="salary_range"
+      class="validate"
+      minlength="5"
+      maxlength="20"
+      value="{{job.salary_range}}"
+      required
+    />
+    <button class="submit-btn" type="submit">Edit Details</button>
+  </form>
+  <a href="{{url_for('profile')}}" class="cancel-edit">Cancel</a>
+</section>
+
+{% endblock %}

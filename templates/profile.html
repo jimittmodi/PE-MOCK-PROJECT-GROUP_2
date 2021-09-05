@@ -1,0 +1,185 @@
+{% extends "base.html" %} {% block content %} {% if user.is_jobseeker == "Yes"%}
+<!--Jobseeker Details form-->
+<section class="jobseeker-details-container">
+  <div class="personal-details">
+    <i class="fas fa-pen fa-2x edit-user-info"></i>
+    <i class="fas fa-times close-user-info"></i>
+    <form method="post" action="{{ url_for('profile') }}">
+      <label for="jobseeker_name">Name:</label>
+      <input
+        type="text"
+        id="jobseeker_name"
+        name="jobseeker_name"
+        class="validate edit"
+        value="{{ user.name }}"
+        disabled="disabled"
+        required
+      />
+      <label for="email-jobseeker">Email:</label>
+      <input
+        type="email"
+        class="validate edit"
+        value="{{ user.email }}"
+        id="email-jobseeker"
+        name="email"
+        pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,35}$"
+        disabled="disabled"
+      />
+      <button class="user-details-submit submit-btn" type="submit">
+        SUBMIT
+      </button>
+    </form>
+  </div>
+</section>
+
+<!--Saved Jobs Section-->
+<section class="jobs-section-wrapper">
+  <div class="job-title-container">
+    <h1 class="jobs-section-title">Fav Coaches</h1>
+    <h3 class="page-count saved-page-count"></h3>
+  </div>
+
+  <h3 class="saved-jobs">Saved</h3>
+  <span class="saved-jobs-total">{{saved_jobs|length}}</span>
+  <section class="saved-jobs-wrapper whole-listing">
+    {% for job in saved_jobs %}
+    <div class="saved-job-box job-box">
+      <img
+        class="saved-job-icon"
+        src="static/images/saved-job-icon.png"
+        alt="bookmark icon"
+      />
+      <div class="saved-job-info">
+        <h1>{{job.job_title}}</h1>
+        <h3>{{job.company_name}} | {{job.contract_type}}</h3>
+        <h4>{{job.posted_date}}</h4>
+      </div>
+
+      <!--Delte saved job-->
+      <a
+        class="jobseeker-btn delete_job"
+        href="{{url_for('delete_saved_job', job=job._id)}}"
+        >Remove</a
+      >
+    </div>
+    {% endfor %}
+  </section>
+</section>
+
+<!-- Page Selector-->
+<div class="page-numbers saved-jobs-pages">
+  <ul class="pagination">
+    <li class="prev-page">
+      <a href="javascript:void(0)"><i class="fas fa-chevron-left"></i></a>
+    </li>
+  </ul>
+</div>
+
+{% endif %} {% if user.is_employer == "Yes" %}
+<!--Employer Details form-->
+<section class="employer-details-container">
+  <div class="personal-details">
+    <i class="fas fa-pen fa-2x edit-user-info"></i>
+    <i class="fas fa-times close-user-info"></i>
+    <form method="post" action="{{url_for('profile')}}">
+      <label for="employer_name">Name:</label>
+      <input
+        type="text"
+        id="employer_name"
+        name="employer_name"
+        class="validate edit"
+        value="{{ user.name }}"
+        disabled="disabled"
+        required
+      />
+      <label for="email-employer">Email:</label>
+      <input
+        type="email"
+        class="validate edit"
+        value="{{ user.email }}"
+        id="email-employer"
+        name="email"
+        pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,35}$"
+        disabled="disabled"
+      />
+      <button class="user-details-submit submit-btn" type="submit">
+        SUBMIT
+      </button>
+    </form>
+  </div>
+  <div class="company-details">
+    <form method="post" action="{{url_for('profile')}}">
+      <label for="company_name">Sports:</label>
+      <input
+        type="text"
+        id="company_name"
+        name="company_name"
+        class="validate"
+        value="{{ user.company_name }}"
+        required
+        disabled="disabled"
+      />
+      <label for="company_address">Achievements:</label>
+      <input
+        type="text"
+        class="validate"
+        value="{{ user.company_address }}"
+        id="company_address"
+        disabled="disabled"
+        name="company_address"
+        minlength="10"
+        maxlength="120"
+      />
+      <button class="user-details-submit submit-btn" type="submit">
+        SUBMIT
+      </button>
+    </form>
+  </div>
+</section>
+
+<!--Posted Jobs Section-->
+<section class="jobs-section-wrapper">
+  <h1 class="jobs-section-title">My Listings</h1>
+  <h3 class="saved-jobs">Posted</h3>
+  <span class="saved-jobs-total">{{posted_jobs|length}}</span>
+  <section class="saved-jobs-wrapper whole-listing">
+    {% for post in posted_jobs %}
+    <div class="saved-job-box job-box">
+      <img
+        class="saved-job-icon"
+        src="static/images/saved-job-icon.png"
+        alt="bookmark icon"
+      />
+      <div class="saved-job-info">
+        <h1>{{post.job_title}}</h1>
+        <h3>{{post.company_name}} | {{post.contract_type}}</h3>
+        <h4>{{post.posted_date}}</h4>
+      </div>
+
+      <div class="job-cta">
+        <!--Edit posted job-->
+        <a href="{{url_for('edit_job', post=post._id)}}" class="edit_saved_job"
+          >Edit</a
+        >
+        <!--Remove posted job-->
+        <a
+          class="delete_job"
+          href="{{url_for('delete_posted_job', post=post._id)}}"
+          >Remove</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</section>
+
+<!-- Page Selector-->
+<div class="page-numbers saved-jobs-pages">
+  <ul class="pagination">
+    <li class="prev-page">
+      <a href="javascript:void(0)"><i class="fas fa-chevron-left"></i></a>
+    </li>
+  </ul>
+</div>
+
+{% endif %} {% endblock %}

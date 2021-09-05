@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block content %}
+
+<!--Post a job-->
+<section class="post-job-form">
+  <h1>Post Yourself as a coach</h1>
+  <h4>Please enter your details below</h4>
+  <form action="{{url_for('post_job')}}" method="POST">
+    <label for="job_title">Coach Name:</label>
+    <input
+      type="text"
+      id="job_title"
+      name="job_title"
+      class="validate"
+      minlength="5"
+      maxlength="75"
+      required
+    />
+    <label for="job_category">Sports Category:</label>
+    <select name="job_category" id="job_category" class="validate" required>
+      <option value="Cricket" class="selected">Cricket</option>
+      <option value="Football">Football</option>
+      <option value="Badminton">Badminton</option>
+    </select>
+    <label for="contract_type">Experience:</label>
+    <select name="contract_type" id="contract_type" class="validate" required>
+      <option value="0-3 years Experience" class="selected">0-3 years Experience</option>
+      <option value="4-6 years Experience">4-6 years Experience</option>
+      <option value="6-10 years Experience">6-10 years Experience</option>
+      <option value="More than 10 years Experience">More than 10 years Experience</option>
+    </select>
+    <label for="job_description">Coach Details:</label>
+    <textarea
+      spellcheck="false"
+      id="job_description"
+      name="job_description"
+      rows="100"
+      minlength="10"
+      maxlength="3500"
+      required
+    ></textarea>
+    <label for="salary_range">Approximate Fees:</label>
+    <input
+      type="text"
+      id="salary_range"
+      name="salary_range"
+      class="validate"
+      minlength="1"
+      maxlength="20"
+      required
+    />
+    <button class="submit-btn" type="submit">POST</button>
+  </form>
+</section>
+
+{% endblock %}

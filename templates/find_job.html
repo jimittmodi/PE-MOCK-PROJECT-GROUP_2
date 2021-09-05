@@ -1,0 +1,170 @@
+{% extends "base.html" %} {% block content %}
+
+<!--Hero Section-->
+
+<section class="hero-section-job">
+  <div class="hero-section_wrapper">
+    <h1 class="hero-section_title">Search Available Coaches</h1>
+
+    <div class="hero-search">
+      <form id="search-form" method="POST" action="{{url_for('search')}}">
+        <label for="search_box"></label>
+        <input
+          type="search"
+          class="search-box"
+          placeholder="Search all coaches..."
+          id="search_box"
+          name="search_box"
+        />
+        <input type="submit" value="EXPLORE" class="search-submit" />
+      </form>
+    </div>
+  </div>
+</section>
+
+<!--Search By Category Section-->
+<section class="popular-categories">
+  <h1 class="section-title">Popular Categories</h1>
+  <hr class="large-horizontal-rule" />
+  <div class="popular-categories-box_wrapper">
+    <div class="popular-jobs_box-search category_one">
+      <i class="fas fa-chart-pie fa-3x"></i>
+      <h1>Cricket</h1>
+      <form action="{{url_for('find_job')}}" method="POST">
+        <label for="marketing"></label>
+        <input
+          class="search-btn-category"
+          name="job_category_name"
+          type="submit"
+          value="marketing"
+          id="marketing"
+        />
+        <i class="fas fa-angle-double-right fa-3x"></i>
+      </form>
+    </div>
+
+    <div class="popular-jobs_box-search category_two">
+      <i class="fas fa-coins fa-3x"></i>
+      <h1>Football</h1>
+      <form action="{{url_for('find_job')}}" method="POST">
+        <input
+          class="search-btn-category"
+          name="job_category_name"
+          type="submit"
+          value="finance"
+        />
+        <i class="fas fa-angle-double-right fa-3x"></i>
+      </form>
+    </div>
+
+    <div class="popular-jobs_box-search category_three">
+      <i class="fas fa-phone-volume fa-3x"></i>
+      <h1>Badminton</h1>
+      <form action="{{url_for('find_job')}}" method="POST">
+        <input
+          class="search-btn-category"
+          name="job_category_name"
+          type="submit"
+          value="sales"
+        />
+        <i class="fas fa-angle-double-right fa-3x"></i>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Jobs Listing-->
+
+<section class="job-listing-container" id="job-listing-wrap">
+  <div class="job-listing-wrapper">
+    <div class="whole-listing job-listing">
+      <!--FLash messages-->
+      <section class="flash-message-container">
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <div class="row flash-message">
+          <h2>{{ message }}</h2>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+      </section>
+
+      <!-- Jobs per category-->
+      {% if job_category %}
+      <div class="job-listing-title">
+        <h2>{{job_category}} Category Jobs ({{all_jobs|length}}) /</h2>
+        <a class="see-all-jobs-filter" href="{{url_for('find_job')}}"
+          >See All Coaches</a
+        >
+        <h3 class="page-count"></h3>
+        <hr />
+      </div>
+      {% elif all_jobs|length == 0 %}
+      <div class="job-listing-title">
+        <h2>
+          All Coaches /
+          <a class="see-all-jobs-filter" href="{{url_for('find_job')}}"
+            >See All Coaches</a
+          >
+        </h2>
+        <h3 class="page-count"></h3>
+        <hr />
+      </div>
+      {% else %}
+      <div class="job-listing-title">
+        <h2>
+          All Coaches ({{all_jobs|length}}) /
+          <a class="see-all-jobs-filter" href="{{url_for('find_job')}}"
+            >See All Coaches</a
+          >
+        </h2>
+        <h3 class="page-count"></h3>
+        <hr />
+      </div>
+      {% endif %}
+
+      <!--All Listed Jobs-->
+      {% if all_jobs|length > 0 %} {% for job in all_jobs|reverse %}
+      <div class="job-listing-box job-box">
+        {% if session.user %} {% if user.is_jobseeker == "Yes" %}
+        <form
+          class="save-job_form"
+          action="{{url_for('save_job', job=job._id)}}"
+          method="POST"
+        >
+          <button class="save_job"></button>
+          <input type="text" name="job_id" id="job_id" value="{{job._id}}" />
+        </form>
+        {% endif %} {% endif %}
+        <h1 class="job-title">{{job.job_title}}</h1>
+        <h4 class="company_name">{{ job.company_name}}</h4>
+        <h2 class="contract-type-location">
+          {{ job.contract_type }} | {{job.company_address}}
+        </h2>
+        <h3 class="job-salary">{{ job.salary_range }}</h3>
+
+        <p class="job-description">{{job.job_description}}</p>
+        <h5 class="hide-post-date">{{job.posted_date}}</h5>
+        <button class="see-full-job">See More</button>
+      </div>
+      {% endfor %} {% else %}
+
+      <h2 class="no_jobs_title">No Coaches Found</h2>
+
+      {% endif %}
+    </div>
+
+    <!--Extended Job Info-->
+    <div class="job-expand"></div>
+  </div>
+
+  <!-- Page Selector-->
+  <div class="page-numbers">
+    <ul class="pagination">
+      <li class="prev-page">
+        <a href="javascript:void(0)"><i class="fas fa-chevron-left"></i></a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

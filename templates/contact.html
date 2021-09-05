@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="contact-wrapper">
+  <div class="form-wrapper">
+    <h2>Get In Touch!</h2>
+    <br />
+    <form class="contact-form" onsubmit="return sendMail(this);">
+      <label for="fName"></label>
+      <input
+        class="contact-input validate"
+        type="text"
+        name="fName"
+        id="fName"
+        placeholder="First Name"
+        pattern="[A-Za-z ]{5,35}"
+        required
+      />
+      <label for="lName" class="sr-only"></label>
+      <input
+        class="contact-input validate"
+        type="text"
+        name="lName"
+        id="lName"
+        pattern="[A-Za-z ]{5,35}"
+        placeholder="Last Name"
+        required
+      />
+      <label for="emailaddress"></label>
+      <input
+        class="contact-input validate"
+        type="email"
+        id="emailaddress"
+        name="emailaddress"
+        pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,35}$"
+        required
+        placeholder="john@gmail.com"
+      />
+      <label for="phoneNumber"></label>
+      <input
+        class="contact-input validate"
+        type="number"
+        id="phoneNumber"
+        name="phoneNumber"
+        placeholder="Your Phone Number"
+        required
+      />
+      <label for="message"></label>
+      <textarea
+        name="message"
+        id="message"
+        rows="5"
+        placeholder="Your Message"
+      ></textarea>
+      <label for="submit" class="sr-only">Submit Details</label>
+      <input class="submit-form" type="submit" id="submit" value="SUBMIT" />
+    </form>
+  </div>
+  <div class="company-details-section">
+    <h2>Connect with us:</h2>
+    <br />
+    <p>
+      For support or any queries:
+      <br />
+      Email us at <a href="PEGroup2@gmail.com ">PEGroup2@gmail.com</a>
+    </p>
+    <br />
+
+    <h3>Visit us at:</h3>
+    <br />
+    <p>A/2, Prestige Complex, Opp. Suraj Plaza,Mumbai</p>
+
+    <div class="social-icons-contact">
+      <a target="_blank" href="https://www.facebook.com/"
+        ><i class="fab fa-facebook"></i
+      ></a>
+      <a target="_blank" href="https://www.instagram.com/"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a href="https://twitter.com/?lang=en" target="_blank"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    </div>
+  </div>
+</section>
+
+<div id="company-location"></div>
+
+{% endblock %}
