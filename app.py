@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
+from flask_session import Session
+from flask_cors import CORS
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,7 +14,8 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
-
+Session(app)
+CORS(app)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.urandom(24)
