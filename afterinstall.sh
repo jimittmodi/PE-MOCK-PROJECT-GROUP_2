@@ -6,12 +6,12 @@ yum install -y git
 yum install ruby -y
 yum install wget -y
 cd /home/ec2-user/
+git clone https://github.com/mayurb99/PE-MOCK-PROJECT-GROUP_2.git
+cd PE-MOCK-PROJECT-GROUP_2
 wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
 chmod +x ./install
 ./install auto
 service codedeploy-agent start
-git clone https://github.com/mayurb99/PE-MOCK-PROJECT-GROUP_2.git
-cd PE-MOCK-PROJECT-GROUP_2
 pip3 install -r requirements.txt
 wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 cat > env.py << ABC
