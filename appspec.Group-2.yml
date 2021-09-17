@@ -3,7 +3,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user
+    destination: /home/ec2-user/PE-MOCK-PROJECT-GROUP_2
 hooks:
   AfterInstall:
     - location: afterinstall.sh
