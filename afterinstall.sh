@@ -17,7 +17,7 @@ cat > env.py << ABC
 import os
 os.environ.setdefault("IP", "0.0.0.0")
 os.environ.setdefault("PORT", "80")
-os.environ.setdefault("MONGO_URI", "mongodb://group2:groupnumber2@group2-mock.cluster-csaruqlxxway.us-east-1.docdb.amazonaws.com:27017/myFirstDatabase?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false")
-os.environ.setdefault("MONGO_DBNAME", "test")
+os.environ.setdefault("MONGO_URI", "mongodb://group2:groupnumber2@group2-mock.cluster-csaruqlxxway.us-east-1.docdb.amazonaws.com:27017/Group2?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false")
+os.environ.setdefault("MONGO_DBNAME", "Group2")
 ABC
 python3 app.py &
