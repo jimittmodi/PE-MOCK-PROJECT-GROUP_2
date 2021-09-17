@@ -3,12 +3,13 @@
 yum update -y
 yum install -y aws-cli
 yum install -y git
-cd /home/ec2-user/
-aws configure
-aws s3 cp s3://aws-codedeploy-us-east-1/latest/install . --region us-east-1
+yum install ruby -y
+yum install wget -y
+wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
 chmod +x ./install
-sed -i "s/sleep(.*)/sleep(10)/" install
 ./install auto
+service codedeploy-agent start
+cd /home/ec2-user/
 git clone https://github.com/mayurb99/PE-MOCK-PROJECT-GROUP_2.git
 cd PE-MOCK-PROJECT-GROUP_2
 pip3 install -r requirements.txt
